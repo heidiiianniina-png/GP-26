@@ -443,13 +443,30 @@ namespace Unity.FPS.Game
                 ? Mathf.CeilToInt(CurrentCharge * BulletsPerShot)
                 : BulletsPerShot;
 
-            // spawn all bullets with random direction
             for (int i = 0; i < bulletsPerShotFinal; i++)
             {
                 Vector3 shotDirection = GetShotDirectionWithinSpread(WeaponMuzzle);
-                ProjectileBase newProjectile = Instantiate(ProjectilePrefab, WeaponMuzzle.position,
-                    Quaternion.LookRotation(shotDirection));
+
+                // Spawn projectile
+                ProjectileBase newProjectile = Instantiate(
+                    ProjectilePrefab,
+                    WeaponMuzzle.position,
+                    Quaternion.LookRotation(shotDirection)
+                );
+
                 newProjectile.Shoot(this);
+
+                // 🔹 Raycast to detect hit
+                RaycastHit hit;
+                if (Physics.Raycast(WeaponMuzzle.position, shotDirection, out hit, 200f))
+                {
+                    DestroyOnShot destroyable = hit.collider.GetComponent<DestroyOnShot>();
+
+                    if (destroyable != null)
+                    {
+                        destroyable.DestroyObject();
+                    }
+                }
             }
 
             // muzzle flash
