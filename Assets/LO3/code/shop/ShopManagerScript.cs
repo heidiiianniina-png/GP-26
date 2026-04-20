@@ -11,7 +11,7 @@ public class ShopManagerScript : MonoBehaviour
     
     void Start()
     {
-        CoinsTxt.text = "Coins:" + coins.ToString();
+        CoinsTxt.text = coins.ToString();
 
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
@@ -19,10 +19,10 @@ public class ShopManagerScript : MonoBehaviour
         shopItems[1, 4] = 4;
 
         //price
-        shopItems[2, 1] = 10;
-        shopItems[2, 2] = 20;
-        shopItems[2, 3] = 30;
-        shopItems[2, 4] = 40;
+        shopItems[2, 1] = 5;
+        shopItems[2, 2] = 4;
+        shopItems[2, 3] = 10;
+        shopItems[2, 4] = 10;
 
         //Quantity
         shopItems[3, 1] = 0;
