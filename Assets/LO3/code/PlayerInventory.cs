@@ -22,4 +22,19 @@ public class PlayerInventory : MonoBehaviour
 
         inventoryUI.UpdateCoconutText(this, type);
     }
+    public void RemoveCoconut(CoconutType type)
+    {
+        switch (type)
+        {
+            case CoconutType.Green:
+                NumberOfGreenCoconuts--;
+                break;
+
+            case CoconutType.Brown:
+                NumberOfBrownCoconuts--;
+                break;
+        }
+
+        inventoryUI.UpdateCoconutText(this, type);
+    }
 }
